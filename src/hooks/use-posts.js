@@ -9,7 +9,18 @@ const usePosts = () => {
                     frontmatter {
                         title,
                         slug,
-                        author
+                        author,
+                        image {
+                            sharp: childImageSharp {
+                                fluid(
+                                    maxWidth: 100
+                                    maxHeight: 100
+                                    duotone: { shadow: "#663399", highlight: "#ddbbff" }
+                                ) {
+                                    ...GatsbyImageSharpFluid_withWebp
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -21,6 +32,7 @@ const usePosts = () => {
         author: post.frontmatter.author,
         slug: post.frontmatter.slug,
         excerpt: post.excerpt,
+        image: post.frontmatter.image
     }));
 }
 
